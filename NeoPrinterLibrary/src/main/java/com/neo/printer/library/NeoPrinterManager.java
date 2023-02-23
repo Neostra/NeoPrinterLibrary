@@ -10,7 +10,7 @@ import android.util.Log;
  * Created by dzm on 2022/12/15.
  */
 public class NeoPrinterManager {
-    private static final String TAG = "NeoPrinterManager";
+    private static final String TAG = "NeoPrinterLibrary_NeoPrinterManager";
     private NeoPrinterManager() {
     }
 
@@ -23,7 +23,7 @@ public class NeoPrinterManager {
             Log.d(TAG,mContext.getPackageName() + " bindService!");
             Intent intent = new Intent();
             intent.setAction("com.neo.printer.sdk.NeoPrinterService");
-            intent.setComponent(new ComponentName("com.neo.printer.sdk", "com.neo.printer.sdk.NeoPrinterService"));
+            intent.setComponent(new ComponentName("com.neo.printer.sdk", "com.neo.printer.sdk.core.ApiAdapterManager.NeoPrinterService"));
             return mContext.getApplicationContext().bindService(intent, callback, Context.BIND_AUTO_CREATE);
         }else {
             Log.e(TAG,"bindService parameter must be not null!");

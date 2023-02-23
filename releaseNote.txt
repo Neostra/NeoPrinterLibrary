@@ -1,34 +1,7 @@
-2022/12/15
-1.
-
-
-
-
-
-2022/12/15
-1.配置NeoPrinterLibrary中的build.gradle生成jar包
-2.NeoPrinterLibrary屏蔽dependencies
-3.删除NeoPrinterLibrary中test目录
-4.app模块改为调用jar方式调用NeoPrinterSdk的方法
-
-注:生成Jar方法：点击右上方Gradle-->NeoPrinterLibrary-->Tasks-->makeJar
-
-
+2023/02/23
+add API function
 
 
 
 2022/12/15
-1.NeoPrinterLibrary库配置生成jar
-
-模块介绍:
-app模块: 主要做简单的debug，不做打印机测试app使用
-NeoPrinterLibrary模块:AIDL库的实现，负责服务的绑定和解绑功能
-NeoPrinterSdk模块:核心模块，主要实现打印机的功能
-
-功能实现:
-app模块通过导入NeoPrinterLibrary库，已经可用调用到NeoPrinterSdk模块的方法。
-注：NeoPrinterSdk模块同样需要导入NeoPrinterLibrary库
-
-另:NeoPrinterLibrary模块中存在aidl1目录，这个目录主要用于新添加aidl接口时，
-    编译出INeoPrinterService.java和IPrinterCallback.java两个文件。
-    build NeoPrinterLibrary模块时需要把aidl1目录修改为aidl目录
+add NeoPrinterLibrary code
