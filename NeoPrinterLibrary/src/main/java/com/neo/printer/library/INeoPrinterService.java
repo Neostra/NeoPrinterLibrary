@@ -303,6 +303,28 @@ public interface INeoPrinterService extends android.os.IInterface
     @Override public void printDoubleQR(int fd, String qr1Data, String qr2Data, IPrinterCallback callback) throws android.os.RemoteException
     {
     }
+    @Override public String getPrinterUpdatePath(int fd) throws android.os.RemoteException
+    {
+      return null;
+    }
+    @Override public void setPrinterUpdatePath(int fd, String path) throws android.os.RemoteException
+    {
+    }
+    @Override public void startPrinterUpdate(int fd) throws android.os.RemoteException
+    {
+    }
+    @Override public void getPrinterUpdateStatus(int fd, IPrinterUpdateCallback callback) throws android.os.RemoteException
+    {
+    }
+    @Override public void setIsUpdatePrinter(int fd, int update) throws android.os.RemoteException
+    {
+    }
+    @Override public void printBitmapColorChart(int fd, android.graphics.Bitmap bitmap, IPrinterCallback callback) throws android.os.RemoteException
+    {
+    }
+    @Override public void printBitmapColorChartWithAlign(int fd, android.graphics.Bitmap bitmap, int alignmentMode, IPrinterCallback callback) throws android.os.RemoteException
+    {
+    }
     @Override
     public android.os.IBinder asBinder() {
       return null;
@@ -1467,6 +1489,96 @@ public interface INeoPrinterService extends android.os.IInterface
           IPrinterCallback _arg3;
           _arg3 = IPrinterCallback.Stub.asInterface(data.readStrongBinder());
           this.printDoubleQR(_arg0, _arg1, _arg2, _arg3);
+          reply.writeNoException();
+          return true;
+        }
+        case TRANSACTION_getPrinterUpdatePath:
+        {
+          data.enforceInterface(descriptor);
+          int _arg0;
+          _arg0 = data.readInt();
+          String _result = this.getPrinterUpdatePath(_arg0);
+          reply.writeNoException();
+          reply.writeString(_result);
+          return true;
+        }
+        case TRANSACTION_setPrinterUpdatePath:
+        {
+          data.enforceInterface(descriptor);
+          int _arg0;
+          _arg0 = data.readInt();
+          String _arg1;
+          _arg1 = data.readString();
+          this.setPrinterUpdatePath(_arg0, _arg1);
+          reply.writeNoException();
+          return true;
+        }
+        case TRANSACTION_startPrinterUpdate:
+        {
+          data.enforceInterface(descriptor);
+          int _arg0;
+          _arg0 = data.readInt();
+          this.startPrinterUpdate(_arg0);
+          reply.writeNoException();
+          return true;
+        }
+        case TRANSACTION_getPrinterUpdateStatus:
+        {
+          data.enforceInterface(descriptor);
+          int _arg0;
+          _arg0 = data.readInt();
+          IPrinterUpdateCallback _arg1;
+          _arg1 = IPrinterUpdateCallback.Stub.asInterface(data.readStrongBinder());
+          this.getPrinterUpdateStatus(_arg0, _arg1);
+          reply.writeNoException();
+          return true;
+        }
+        case TRANSACTION_setIsUpdatePrinter:
+        {
+          data.enforceInterface(descriptor);
+          int _arg0;
+          _arg0 = data.readInt();
+          int _arg1;
+          _arg1 = data.readInt();
+          this.setIsUpdatePrinter(_arg0, _arg1);
+          reply.writeNoException();
+          return true;
+        }
+        case TRANSACTION_printBitmapColorChart:
+        {
+          data.enforceInterface(descriptor);
+          int _arg0;
+          _arg0 = data.readInt();
+          android.graphics.Bitmap _arg1;
+          if ((0!=data.readInt())) {
+            _arg1 = android.graphics.Bitmap.CREATOR.createFromParcel(data);
+          }
+          else {
+            _arg1 = null;
+          }
+          IPrinterCallback _arg2;
+          _arg2 = IPrinterCallback.Stub.asInterface(data.readStrongBinder());
+          this.printBitmapColorChart(_arg0, _arg1, _arg2);
+          reply.writeNoException();
+          return true;
+        }
+        case TRANSACTION_printBitmapColorChartWithAlign:
+        {
+          data.enforceInterface(descriptor);
+          int _arg0;
+          _arg0 = data.readInt();
+          android.graphics.Bitmap _arg1;
+          if ((0!=data.readInt())) {
+            _arg1 = android.graphics.Bitmap.CREATOR.createFromParcel(data);
+          }
+          else {
+            _arg1 = null;
+          }
+          int _arg2;
+          _arg2 = data.readInt();
+          IPrinterCallback _arg3;
+          _arg3 = IPrinterCallback.Stub.asInterface(data.readStrongBinder());
+          this.printBitmapColorChartWithAlign(_arg0, _arg1, _arg2, _arg3);
           reply.writeNoException();
           return true;
         }
@@ -3444,6 +3556,161 @@ public interface INeoPrinterService extends android.os.IInterface
           _data.recycle();
         }
       }
+      @Override public String getPrinterUpdatePath(int fd) throws android.os.RemoteException
+      {
+        android.os.Parcel _data = android.os.Parcel.obtain();
+        android.os.Parcel _reply = android.os.Parcel.obtain();
+        String _result;
+        try {
+          _data.writeInterfaceToken(DESCRIPTOR);
+          _data.writeInt(fd);
+          boolean _status = mRemote.transact(Stub.TRANSACTION_getPrinterUpdatePath, _data, _reply, 0);
+          if (!_status && getDefaultImpl() != null) {
+            return getDefaultImpl().getPrinterUpdatePath(fd);
+          }
+          _reply.readException();
+          _result = _reply.readString();
+        }
+        finally {
+          _reply.recycle();
+          _data.recycle();
+        }
+        return _result;
+      }
+      @Override public void setPrinterUpdatePath(int fd, String path) throws android.os.RemoteException
+      {
+        android.os.Parcel _data = android.os.Parcel.obtain();
+        android.os.Parcel _reply = android.os.Parcel.obtain();
+        try {
+          _data.writeInterfaceToken(DESCRIPTOR);
+          _data.writeInt(fd);
+          _data.writeString(path);
+          boolean _status = mRemote.transact(Stub.TRANSACTION_setPrinterUpdatePath, _data, _reply, 0);
+          if (!_status && getDefaultImpl() != null) {
+            getDefaultImpl().setPrinterUpdatePath(fd, path);
+            return;
+          }
+          _reply.readException();
+        }
+        finally {
+          _reply.recycle();
+          _data.recycle();
+        }
+      }
+      @Override public void startPrinterUpdate(int fd) throws android.os.RemoteException
+      {
+        android.os.Parcel _data = android.os.Parcel.obtain();
+        android.os.Parcel _reply = android.os.Parcel.obtain();
+        try {
+          _data.writeInterfaceToken(DESCRIPTOR);
+          _data.writeInt(fd);
+          boolean _status = mRemote.transact(Stub.TRANSACTION_startPrinterUpdate, _data, _reply, 0);
+          if (!_status && getDefaultImpl() != null) {
+            getDefaultImpl().startPrinterUpdate(fd);
+            return;
+          }
+          _reply.readException();
+        }
+        finally {
+          _reply.recycle();
+          _data.recycle();
+        }
+      }
+      @Override public void getPrinterUpdateStatus(int fd, IPrinterUpdateCallback callback) throws android.os.RemoteException
+      {
+        android.os.Parcel _data = android.os.Parcel.obtain();
+        android.os.Parcel _reply = android.os.Parcel.obtain();
+        try {
+          _data.writeInterfaceToken(DESCRIPTOR);
+          _data.writeInt(fd);
+          _data.writeStrongBinder((((callback!=null))?(callback.asBinder()):(null)));
+          boolean _status = mRemote.transact(Stub.TRANSACTION_getPrinterUpdateStatus, _data, _reply, 0);
+          if (!_status && getDefaultImpl() != null) {
+            getDefaultImpl().getPrinterUpdateStatus(fd, callback);
+            return;
+          }
+          _reply.readException();
+        }
+        finally {
+          _reply.recycle();
+          _data.recycle();
+        }
+      }
+      @Override public void setIsUpdatePrinter(int fd, int update) throws android.os.RemoteException
+      {
+        android.os.Parcel _data = android.os.Parcel.obtain();
+        android.os.Parcel _reply = android.os.Parcel.obtain();
+        try {
+          _data.writeInterfaceToken(DESCRIPTOR);
+          _data.writeInt(fd);
+          _data.writeInt(update);
+          boolean _status = mRemote.transact(Stub.TRANSACTION_setIsUpdatePrinter, _data, _reply, 0);
+          if (!_status && getDefaultImpl() != null) {
+            getDefaultImpl().setIsUpdatePrinter(fd, update);
+            return;
+          }
+          _reply.readException();
+        }
+        finally {
+          _reply.recycle();
+          _data.recycle();
+        }
+      }
+      @Override public void printBitmapColorChart(int fd, android.graphics.Bitmap bitmap, IPrinterCallback callback) throws android.os.RemoteException
+      {
+        android.os.Parcel _data = android.os.Parcel.obtain();
+        android.os.Parcel _reply = android.os.Parcel.obtain();
+        try {
+          _data.writeInterfaceToken(DESCRIPTOR);
+          _data.writeInt(fd);
+          if ((bitmap!=null)) {
+            _data.writeInt(1);
+            bitmap.writeToParcel(_data, 0);
+          }
+          else {
+            _data.writeInt(0);
+          }
+          _data.writeStrongBinder((((callback!=null))?(callback.asBinder()):(null)));
+          boolean _status = mRemote.transact(Stub.TRANSACTION_printBitmapColorChart, _data, _reply, 0);
+          if (!_status && getDefaultImpl() != null) {
+            getDefaultImpl().printBitmapColorChart(fd, bitmap, callback);
+            return;
+          }
+          _reply.readException();
+        }
+        finally {
+          _reply.recycle();
+          _data.recycle();
+        }
+      }
+      @Override public void printBitmapColorChartWithAlign(int fd, android.graphics.Bitmap bitmap, int alignmentMode, IPrinterCallback callback) throws android.os.RemoteException
+      {
+        android.os.Parcel _data = android.os.Parcel.obtain();
+        android.os.Parcel _reply = android.os.Parcel.obtain();
+        try {
+          _data.writeInterfaceToken(DESCRIPTOR);
+          _data.writeInt(fd);
+          if ((bitmap!=null)) {
+            _data.writeInt(1);
+            bitmap.writeToParcel(_data, 0);
+          }
+          else {
+            _data.writeInt(0);
+          }
+          _data.writeInt(alignmentMode);
+          _data.writeStrongBinder((((callback!=null))?(callback.asBinder()):(null)));
+          boolean _status = mRemote.transact(Stub.TRANSACTION_printBitmapColorChartWithAlign, _data, _reply, 0);
+          if (!_status && getDefaultImpl() != null) {
+            getDefaultImpl().printBitmapColorChartWithAlign(fd, bitmap, alignmentMode, callback);
+            return;
+          }
+          _reply.readException();
+        }
+        finally {
+          _reply.recycle();
+          _data.recycle();
+        }
+      }
       public static INeoPrinterService sDefaultImpl;
     }
     static final int TRANSACTION_initPrinter = (android.os.IBinder.FIRST_CALL_TRANSACTION + 0);
@@ -3540,6 +3807,13 @@ public interface INeoPrinterService extends android.os.IInterface
     static final int TRANSACTION_setDoubleQR1Version = (android.os.IBinder.FIRST_CALL_TRANSACTION + 91);
     static final int TRANSACTION_setDoubleQR2Version = (android.os.IBinder.FIRST_CALL_TRANSACTION + 92);
     static final int TRANSACTION_printDoubleQR = (android.os.IBinder.FIRST_CALL_TRANSACTION + 93);
+    static final int TRANSACTION_getPrinterUpdatePath = (android.os.IBinder.FIRST_CALL_TRANSACTION + 94);
+    static final int TRANSACTION_setPrinterUpdatePath = (android.os.IBinder.FIRST_CALL_TRANSACTION + 95);
+    static final int TRANSACTION_startPrinterUpdate = (android.os.IBinder.FIRST_CALL_TRANSACTION + 96);
+    static final int TRANSACTION_getPrinterUpdateStatus = (android.os.IBinder.FIRST_CALL_TRANSACTION + 97);
+    static final int TRANSACTION_setIsUpdatePrinter = (android.os.IBinder.FIRST_CALL_TRANSACTION + 98);
+    static final int TRANSACTION_printBitmapColorChart = (android.os.IBinder.FIRST_CALL_TRANSACTION + 99);
+    static final int TRANSACTION_printBitmapColorChartWithAlign = (android.os.IBinder.FIRST_CALL_TRANSACTION + 100);
     public static boolean setDefaultImpl(INeoPrinterService impl) {
       // Only one user of this interface can use this function
       // at a time. This is a heuristic to detect if two different
@@ -3651,4 +3925,11 @@ public interface INeoPrinterService extends android.os.IInterface
   public void setDoubleQR1Version(int fd, int qr1Version) throws android.os.RemoteException;
   public void setDoubleQR2Version(int fd, int qr2Version) throws android.os.RemoteException;
   public void printDoubleQR(int fd, String qr1Data, String qr2Data, IPrinterCallback callback) throws android.os.RemoteException;
+  public String getPrinterUpdatePath(int fd) throws android.os.RemoteException;
+  public void setPrinterUpdatePath(int fd, String path) throws android.os.RemoteException;
+  public void startPrinterUpdate(int fd) throws android.os.RemoteException;
+  public void getPrinterUpdateStatus(int fd, IPrinterUpdateCallback callback) throws android.os.RemoteException;
+  public void setIsUpdatePrinter(int fd, int update) throws android.os.RemoteException;
+  public void printBitmapColorChart(int fd, android.graphics.Bitmap bitmap, IPrinterCallback callback) throws android.os.RemoteException;
+  public void printBitmapColorChartWithAlign(int fd, android.graphics.Bitmap bitmap, int alignmentMode, IPrinterCallback callback) throws android.os.RemoteException;
 }

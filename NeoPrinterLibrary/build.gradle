@@ -39,7 +39,7 @@ dependencies {
  * 接口版本号
  */
 ext{
-    versionCode = 'V0.0.1'
+    versionCode = 'V0.0.2'
 }
 
 /**
